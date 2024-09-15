@@ -13,7 +13,8 @@ class REGISTER(MDScreen):
         username = self.ids.username.text
         email = self.ids.email.text
         dob = self.ids.dob.text
-
+        password = self.ids.pswd.text
+        confirm_password = self.ids.cmpswd.text
         errors = []
 
         # Validate username
@@ -31,6 +32,18 @@ class REGISTER(MDScreen):
             errors.append("Date of Birth is required.")
         elif not self.is_valid_date(dob):
             errors.append("Invalid date format. Use YYYY-MM-DD.")
+        
+         # Validate password
+        if not password:
+            errors.append("Password is required.")
+        elif len(password) < 6:  # Example password length validation
+            errors.append("Password must be at least 6 characters long.")
+        
+        # Validate confirm password
+        if not confirm_password:
+            errors.append("Confirm Password is required.")
+        elif password != confirm_password:
+            errors.append("Passwords do not match.")
 
         if errors:
             error_message = '\n'.join(errors)
@@ -39,6 +52,8 @@ class REGISTER(MDScreen):
             self.ids.username.text = ''
             self.ids.email.text = ''
             self.ids.dob.text = ''
+            self.ids.password.text = ''
+            self.ids.confirm_password.text = ''
             # Add further actions upon successful validation
 
     def is_valid_email(self, email):
