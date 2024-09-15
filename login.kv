@@ -1,0 +1,176 @@
+ScreenManager:
+    LOGIN
+    REGISTER
+
+<LOGIN>:
+    name:"login"
+    MDScreen:
+        md_bg_color: [35/255, 59/255, 54/255, 0.5]
+        FloatLayout:
+            Image:
+                source: 'jarvisbg.jpg'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+        MDCard:
+            size_hint: None, None
+            size: 320, 400
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 15
+            md_bg_color: [35/255, 49/255, 48/255, 0.5]
+            padding: 20
+            spacing: 30
+            orientation: "vertical"
+            
+            MDLabel:
+                text: "LOGIN"
+                font_style: "Button"
+                font_size: 45
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            
+            MDTextField:
+                hint_text: "User Name"
+                icon_right: "account"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+
+            MDTextField:
+                hint_text: "Password"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+                password:True
+            Widget:
+                size_hint_y:None
+                height:30
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 30
+                size_hint_x: None
+                height:'60dp'
+                width: 220  # Adjust the width based on button size and spacing
+                pos_hint: {"center_x": 0.5}  # Center the BoxLayout within its parent
+
+                MDRoundFlatButton:
+                    text: 'SIGN-UP'
+                    font_size: 15
+
+                MDRoundFlatButton:
+                    text: 'SIGN-IN'
+                    font_size: 15
+                    on_release:
+                        root.manager.transition.direction='left'
+                        root.manager.current='register'
+
+
+<REGISTER>:
+    name:"register"
+    MDScreen:
+        md_bg_color: [35/255, 59/255, 54/255, 0.5]
+        FloatLayout:
+            Image:
+                source: 'jarvisbg.jpg'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: (1, 1)
+        MDCard:
+            size_hint: None, None
+            size: 400, 600
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 15
+            md_bg_color: [35/255, 49/255, 48/255, 0.5]
+            padding: 5
+            spacing: 0
+            orientation: "vertical"
+            
+            MDLabel:
+                text: "REGISTER"
+                font_style: "Button"
+                font_size: 45
+                halign: "center"
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+            
+            MDTextField:
+                id:username
+                hint_text: "User Name"
+                icon_right: "account"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+
+            MDTextField:
+                id:email
+                hint_text: "Email ID"
+                icon_right: "email"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+
+            MDTextField:
+                id:dob
+                hint_text: "Date Of Birth"
+                icon_right: "calendar"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+
+            MDTextField:
+                hint_text: "Password"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+                password:True
+
+            MDTextField:
+                hint_text: "Confirm Password"
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: 220
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                color_mode: 'accent'
+                password:True
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: 30
+                size_hint_x: None
+                height:'50dp'
+                width: 200  # Adjust the width based on button size and spacing
+                pos_hint: {"center_x": 0.5}  # Center the BoxLayout within its parent
+
+                MDRoundFlatButton:
+                    text: 'SIGN-UP'
+                    font_size: 15
+                    on_release:
+                        root.manager.transition.direction='left'
+                        root.manager.current='login'
+
+                MDRoundFlatButton:
+                    text: 'REGISTER' 
+                    font_size: 15
+                    on_release:
+                        root.validate_form()
+            Widget:
+                size_hint_y:None
+                height:10
